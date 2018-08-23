@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import sqlite3 as lite
 
 
 app = Flask(__name__)
@@ -10,13 +11,37 @@ def index():
 # users
 @app.route('/users')
 def show_user():
-    result = 1 + 2
-    return str(result)
+    conn = lite.connect('./users.db')
+    conn.row_factory = lite.Row
+    cur = conn.cursor()
+    cur.execute('select * from users;')
+    rows = cur.fetchall()
+    return render_template('users.html', rows=rows)
 
 # signup
 @app.route('/signup')
 def signup():
-    return "under construction!!"
+    return render_template('signup.html')
+
+@app.route('/register', methods=['POST','GET'])
+def register():
+    if request.method == 'POST':
+        try:
+            _name = request.form["name"]
+            _lang = request.form["lang"]
+            _age = request.form["age"]
+            with lite.connect('users.db') as conn:
+                cur = conn.cursor()
+                cur.execute('insert into users(name, lang, age) \
+                    values(?,?,?)', (_name, _lang, _age))
+                conn.commit()
+                msg = "Sign up complete"
+        except:
+            conn.rollback()
+            msg = "Sign up failed"
+        finally:
+            return render_template('signup.html', msg=msg)
+
 
 @app.route('/admin')
 def admin():
