@@ -6,7 +6,7 @@
 <!--
 page_number: true
 $size: A4
-footer : fastcampus Computer Science School, Wooyoung Choi, 2018
+footer : fastcampus Computer Science School, Wooyoung Choi, 2019
 -->
 
 ## Socket
