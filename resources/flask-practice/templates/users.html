@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Show all user list</title>
+ </head>
+ <body>
+  <h1>Sign up</h1>
+  <form id="signup-form" action="{{ url_for('users') }}" method="POST">
+   <label>Username <input id="username" name="username"></label>
+   <br>
+   <label>Password <input id="userpw" name="userpw"></label>
+   <input id="gender" name="gender">
+   <input id="usermail" name="usermail">
+
+   <input type="submit" name="submit" value="내 마음 속에 저장">
+  </form>
+
+  <h1>All users</h1>
+  <p>This is all user's list</p>
+  <!-- show all user list into table-->
+
+ </body>
+</html>
