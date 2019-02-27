@@ -7,9 +7,13 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/users')
+def users():
+    return render_template('users.html')
+
 #/users => "This is user list"
-@app.route('/users/<string:name>')
-def users(name=None):
+@app.route('/user/<string:name>')
+def user(name=None):
     return "Hello, {name}!".format(name=name)
 
 @app.route('/about')
