@@ -9,16 +9,48 @@
   <form id="signup-form" action="{{ url_for('users') }}" method="POST">
    <label>Username <input id="username" name="username"></label>
    <br>
-   <label>Password <input id="userpw" name="userpw"></label>
-   <input id="gender" name="gender">
-   <input id="usermail" name="usermail">
+   <label>Password <input type="password" id="userpw" name="userpw"></label>
+   <label>Gender <input id="gender" name="gender"></label>
+   <label>email <input id="usermail" name="usermail"></label>
 
    <input type="submit" name="submit" value="내 마음 속에 저장">
   </form>
 
+  <h3 style="color:red;">{{ msg }}</h3>
+
   <h1>All users</h1>
   <p>This is all user's list</p>
   <!-- show all user list into table-->
-
+  <table id="user-list">
+   <thead>
+    <tr>
+     <th>id</th>
+     <th>Username</th>
+     <th>Password</th>
+     <th>Gender</th>
+     <th>Email</th>
+    </tr>
+   </thead>
+   <tbody>
+    {% for row in rows %}
+     <tr>
+      <td>{{ row["id"] }}</td>
+      <td>{{ row["username"] }}</td>
+      <td>{{ row["password"] }}</td>
+      <td>{{ row["gender"] }}</td>
+      <td>{{ row["email"] }}</td>
+     </tr>
+    {% endfor %}
+   </tbody>
+  </table>
  </body>
 </html>
+
+
+
+
+
+
+
+
+
